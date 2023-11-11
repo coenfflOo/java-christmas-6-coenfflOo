@@ -1,7 +1,11 @@
 package christmas;
 
+import camp.nextstep.edu.missionutils.Console;
+import christmas.controller.ChristmasMainController;
+
 public class Application {
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        ChristmasMainController.start();
+        Console.close();
     }
 }
