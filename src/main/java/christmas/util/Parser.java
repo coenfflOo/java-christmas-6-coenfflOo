@@ -1,8 +1,17 @@
 package christmas.util;
 
 import christmas.constant.Message.ExceptionMessage;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
+import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 public class Parser {
+    private static final String DELIMITER = ",";
+    private static final String HYPHEN = "-";
+    private static final String regex = "\\w+"+HYPHEN+"\\d+";
+
     private Parser() {
     }
 
@@ -15,13 +24,53 @@ public class Parser {
         }
     }
 
+    public static Map<String, Integer> parseStringToMap(String input) {
+        try {
+            validateContainSpace(input);
+            List<String> splitInput = validateEndsWithDelimiter(input);
+            validateFormatWithHyphen(splitInput);
+            return splitInput.stream()
+                    .collect(Collectors.toMap(
+                            s -> s.split(HYPHEN)[0],
+                            s -> Integer.parseInt(s.split(HYPHEN)[1])
+                    ));
+        } catch (IllegalArgumentException exception) {
+            throw new IllegalArgumentException();
+        }
+    }
+
     private static void validateContainSpace(String input) {
         if (hasWhiteSpace(input)) {
-            throw new IllegalArgumentException(ExceptionMessage.IS_INVALID_DATE.getMessage());
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private static List<String> validateEndsWithDelimiter(String input) {
+        if (isEndsWithDelimiter(input)) {
+            throw new IllegalArgumentException();
+        }
+        return Arrays.stream(input.split(DELIMITER))
+                .toList();
+    }
+
+
+    private static void validateFormatWithHyphen(List<String> input) {
+        boolean isValidFormat = input.stream()
+                .allMatch(Parser::isValidFormat);
+        if (isValidFormat) {
+            throw new IllegalArgumentException();
         }
     }
 
     private static boolean hasWhiteSpace(String input) {
         return input.chars().anyMatch(Character::isWhitespace);
+    }
+
+    private static boolean isEndsWithDelimiter(String input) {
+        return input.endsWith(DELIMITER);
+    }
+
+    private static boolean isValidFormat(String s) {
+        return Pattern.matches(regex, s);
     }
 }
