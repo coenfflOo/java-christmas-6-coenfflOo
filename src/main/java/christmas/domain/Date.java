@@ -18,13 +18,13 @@ public class Date {
 
     private void validateMinimumDate(final int date) {
         if (isSmallerThanUnitDate(date)) {
-            throw new ArithmeticException(ExceptionMessage.IS_INVALID_DATE.getMessage());
+            throw new ArithmeticException(); // 1보다 작음
         }
     }
 
     private void validateMaximumDate(final int date) {
         if (isBiggerThanMaximumDate(date)) {
-            throw new ArithmeticException(ExceptionMessage.IS_INVALID_DATE.getMessage());
+            throw new ArithmeticException(); //31보다 큼
         }
     }
 
