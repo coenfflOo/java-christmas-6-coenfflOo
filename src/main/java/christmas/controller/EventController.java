@@ -37,6 +37,7 @@ public class EventController {
         OutputView.printTotalBenefits(totalMoney);
         int payMoney = benefitService.afterBenefits();
         OutputView.printAfterBenefits(payMoney);
+        OutputView.printBenefitBadge(benefitService.benefitBadge());
     }
 
 }

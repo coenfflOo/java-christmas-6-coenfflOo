@@ -3,19 +3,19 @@ package christmas.service;
 import christmas.domain.Date;
 import christmas.domain.Discount;
 import christmas.domain.Menu;
+import christmas.domain.constant.BadgeItem;
 
 public class BenefitService {
     private final Date date;
     private final Menu menu;
     private final Discount discount;
-//    private int totalBenefitAmount;
 
     public BenefitService(Date date, Menu menu, Discount discount) {
-//        this.totalBenefitAmount = 0;
         this.date = date;
         this.menu = menu;
         this.discount = discount;
     }
+
 
     public int totalBenefits(){
         return christmasDday() + weeklyDiscount() + promotionDiscount();
@@ -23,6 +23,10 @@ public class BenefitService {
 
     public int afterBenefits(){
         return menu.getOriginalPrice() + onlyDiscountBenefits();
+    }
+
+    public String benefitBadge(){
+        return BadgeItem.getIconForValue(Math.abs(totalBenefits()));
     }
 
     private int onlyDiscountBenefits(){

@@ -52,6 +52,11 @@ public class OutputView {
         printNewLine();
     }
 
+    public static void printBenefitBadge(String badge){
+        System.out.println(OutputMessage.RESPONSE_BADGE.getMessage());
+        System.out.println(badge);
+    }
+
     private static void printDate(final int date) {
         System.out.printf(PrintFormat.RESPONSE_DATE.getFormat(), date);
         printNewLine();
