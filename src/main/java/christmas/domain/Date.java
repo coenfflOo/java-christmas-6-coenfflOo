@@ -4,7 +4,7 @@ import christmas.constant.Message.ExceptionMessage;
 
 public class Date {
 
-    private int date;
+    private final int date;
 
     private Date(int date) {
         validateMinimumDate(date);
