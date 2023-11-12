@@ -1,5 +1,7 @@
 package christmas.domain;
 
+import static christmas.constant.Message.ExceptionMessage.IS_INVALID_MENU;
+
 import christmas.domain.constant.Category;
 import christmas.domain.constant.MenuItem;
 import java.util.Arrays;
@@ -34,7 +36,7 @@ public class Menu {
     private void validateMenuExistence(final Map<String, Integer> menu) {
         for (String menuKey : menu.keySet()) {
             if (!MENU_MAP.containsKey(menuKey)) {
-                throw new IllegalArgumentException(); //메뉴판에 없는 메뉴
+                throw new IllegalArgumentException(IS_INVALID_MENU.getMessage()); //메뉴판에 없는 메뉴
             }
         }
     }
@@ -42,7 +44,7 @@ public class Menu {
     private void validateMenuQuantity(final Map<String, Integer> menu) {
         for (int quantity : menu.values()) {
             if (quantity < 1) {
-                throw new IllegalArgumentException(); //메뉴의 개수는 1 이상
+                throw new IllegalArgumentException(IS_INVALID_MENU.getMessage()); //메뉴의 개수는 1 이상
             }
         }
     }
@@ -50,7 +52,7 @@ public class Menu {
     private void validateDuplicateMenu(final Map<String, Integer> menu) {
         long distinctMenuCount = menu.keySet().stream().distinct().count();
         if (distinctMenuCount < menu.size()) {
-            throw new IllegalArgumentException(); //중복된 메뉴
+            throw new IllegalArgumentException(IS_INVALID_MENU.getMessage()); //중복된 메뉴
         }
     }
 
@@ -59,13 +61,13 @@ public class Menu {
                 .anyMatch(menuKey -> MENU_MAP.get(menuKey).getMenu() != Category.DRINK);
 
         if (!containsNonDrink) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(IS_INVALID_MENU.getMessage());
         }
     }
 
     private void validateMenuCount(final Map<String, Integer> menu) {
         if (menu.size() > MAX_MENU_COUNT) {
-            throw new IllegalArgumentException(); //최대 메뉴 수 20
+            throw new IllegalArgumentException(IS_INVALID_MENU.getMessage()); //최대 메뉴 수 20
         }
     }
 

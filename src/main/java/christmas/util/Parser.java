@@ -1,5 +1,9 @@
 package christmas.util;
 
+import static christmas.constant.Message.ExceptionMessage.ERROR;
+import static christmas.constant.Message.ExceptionMessage.IS_INVALID_DATE;
+import static christmas.constant.Message.ExceptionMessage.IS_INVALID_MENU;
+
 import christmas.constant.Message.ExceptionMessage;
 import java.util.Arrays;
 import java.util.List;
@@ -35,19 +39,19 @@ public class Parser {
                             s -> Integer.parseInt(s.split(HYPHEN)[1])
                     ));
         } catch (IllegalArgumentException exception) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(IS_INVALID_MENU.getMessage());
         }
     }
 
     private static void validateContainSpace(String input) {
         if (hasWhiteSpace(input)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ERROR.getMessage());
         }
     }
 
     private static List<String> validateEndsWithDelimiter(String input) {
         if (isEndsWithDelimiter(input)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(IS_INVALID_MENU.getMessage());
         }
         return Arrays.stream(input.split(DELIMITER))
                 .toList();
@@ -58,7 +62,7 @@ public class Parser {
         boolean isValidFormat = input.stream()
                 .allMatch(Parser::isValidFormat);
         if (isValidFormat) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(IS_INVALID_DATE.getMessage());
         }
     }
 

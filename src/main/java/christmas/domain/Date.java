@@ -1,5 +1,7 @@
 package christmas.domain;
 
+import static christmas.constant.Message.ExceptionMessage.IS_INVALID_DATE;
+
 import christmas.constant.Message.ExceptionMessage;
 
 public class Date {
@@ -20,13 +22,13 @@ public class Date {
 
     private void validateMinimumDate(final int date) {
         if (isSmallerThanUnitDate(date)) {
-            throw new ArithmeticException(); // 1보다 작음
+            throw new IllegalArgumentException(IS_INVALID_DATE.getMessage()); // 1보다 작음
         }
     }
 
     private void validateMaximumDate(final int date) {
         if (isBiggerThanMaximumDate(date)) {
-            throw new ArithmeticException(); //31보다 큼
+            throw new IllegalArgumentException(IS_INVALID_DATE.getMessage()); //31보다 큼
         }
     }
 

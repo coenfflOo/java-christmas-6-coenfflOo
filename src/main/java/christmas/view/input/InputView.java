@@ -12,7 +12,7 @@ public class InputView {
             final String dateInput = InputUtil.readLine();
             final int date = Parser.parseStringToInt(dateInput);
             return Date.from(date);
-        } catch (Exception exception) {
+        } catch (IllegalArgumentException exception) {
             System.out.println(exception.getMessage());
             return readDateInfo();
         }
@@ -23,7 +23,7 @@ public class InputView {
             final String menuInput = InputUtil.readLine();
             final Map<String, Integer> date = Parser.parseStringToMap(menuInput);
             return Menu.from(date);
-        } catch (Exception exception) {
+        } catch (IllegalArgumentException exception) {
             System.out.println(exception.getMessage());
             return readMenuInfo();
         }
