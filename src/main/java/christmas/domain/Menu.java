@@ -5,7 +5,9 @@ import static christmas.constant.Message.ExceptionMessage.IS_INVALID_MENU;
 import christmas.domain.constant.Category;
 import christmas.domain.constant.MenuItem;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -50,9 +52,10 @@ public class Menu {
     }
 
     private void validateDuplicateMenu(final Map<String, Integer> menu) {
-        long distinctMenuCount = menu.keySet().stream().distinct().count();
-        if (distinctMenuCount < menu.size()) {
-            throw new IllegalArgumentException(IS_INVALID_MENU.getMessage()); //중복된 메뉴
+        Set<String> uniqueMenuNames = new HashSet<>();
+
+        if (menu.keySet().stream().anyMatch(name -> !uniqueMenuNames.add(name))) {
+            throw new IllegalArgumentException(IS_INVALID_MENU.getMessage()); // 중복된 메뉴
         }
     }
 
@@ -66,8 +69,11 @@ public class Menu {
     }
 
     private void validateMenuCount(final Map<String, Integer> menu) {
-        if (menu.size() > MAX_MENU_COUNT) {
-            throw new IllegalArgumentException(IS_INVALID_MENU.getMessage()); //최대 메뉴 수 20
+        int totalCount = menu.values().stream()
+                .mapToInt(Integer::intValue)
+                .sum();
+        if (totalCount > MAX_MENU_COUNT) {
+            throw new IllegalArgumentException(IS_INVALID_MENU.getMessage());
         }
     }
 

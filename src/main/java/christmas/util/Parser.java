@@ -6,8 +6,10 @@ import static christmas.constant.Message.ExceptionMessage.IS_INVALID_MENU;
 
 import christmas.constant.Message.ExceptionMessage;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
@@ -33,6 +35,7 @@ public class Parser {
             validateContainSpace(input);
             List<String> splitInput = validateEndsWithDelimiter(input);
             validateFormatWithHyphen(splitInput);
+            validateDuplicateMenu(splitInput);
             return splitInput.stream()
                     .collect(Collectors.toMap(
                             s -> s.split(HYPHEN)[0],
@@ -63,6 +66,13 @@ public class Parser {
                 .allMatch(Parser::isValidFormat);
         if (!isValidFormat) {
             throw new IllegalArgumentException(IS_INVALID_MENU.getMessage());
+        }
+    }
+
+    private static void validateDuplicateMenu(List<String> input) {
+        Set<String> uniqueMenuNames = new HashSet<>();
+        if (input.stream().anyMatch(name -> !uniqueMenuNames.add(name))) {
+            throw new IllegalArgumentException(IS_INVALID_MENU.getMessage()); // 중복된 메뉴
         }
     }
 
