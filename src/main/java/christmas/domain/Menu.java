@@ -1,7 +1,7 @@
 package christmas.domain;
 
-import christmas.constant.Category;
-import christmas.constant.MenuItem;
+import christmas.constant.menu.Category;
+import christmas.constant.menu.MenuItem;
 import java.util.Arrays;
 import java.util.Map;
 import java.util.function.Function;
@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 
 public class Menu {
     private static final int MAX_MENU_COUNT = 20;
+
     private Map<String, Integer> orderMenu;
     private static final Map<String, MenuItem> MENU_MAP = initMenuMap();
 
@@ -54,10 +55,11 @@ public class Menu {
     }
 
     private void validateDrinkOnly(final Map<String, Integer> menu) {
-        for (String menuKey : menu.keySet()) {
-            if (MENU_MAP.get(menuKey).getMenu() == Category.DRINK) {
-                throw new IllegalArgumentException(); //음료만 주문
-            }
+        boolean containsNonDrink = menu.keySet().stream()
+                .anyMatch(menuKey -> MENU_MAP.get(menuKey).getMenu() != Category.DRINK);
+
+        if (!containsNonDrink) {
+            throw new IllegalArgumentException();
         }
     }
 
@@ -70,5 +72,9 @@ public class Menu {
     private static Map<String, MenuItem> initMenuMap() {
         return Arrays.stream(MenuItem.values())
                 .collect(Collectors.toMap(MenuItem::getDish, Function.identity()));
+    }
+
+    public Map<String, Integer> getOrderMenu() {
+        return orderMenu;
     }
 }

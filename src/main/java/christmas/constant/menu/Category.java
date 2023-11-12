@@ -1,4 +1,4 @@
-package christmas.constant;
+package christmas.constant.menu;
 
 public enum Category {
     APPETIZER("애피타이저"),

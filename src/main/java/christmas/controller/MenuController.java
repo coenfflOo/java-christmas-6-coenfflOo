@@ -1,7 +1,6 @@
 package christmas.controller;
 
-import static christmas.constant.Message.InputMessage.REQUEST_MENU;
-import static christmas.view.input.InputView.readDateInfo;
+import static christmas.view.constant.InputMessage.REQUEST_MENU;
 import static christmas.view.input.InputView.readMenuInfo;
 
 import christmas.domain.Menu;

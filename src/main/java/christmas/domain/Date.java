@@ -3,6 +3,7 @@ package christmas.domain;
 import christmas.constant.Message.ExceptionMessage;
 
 public class Date {
+
     private int date;
 
     private Date(int date) {
@@ -34,5 +35,9 @@ public class Date {
 
     private boolean isSmallerThanUnitDate(final int date) {
         return date < 1; // 상수처리
+    }
+
+    public int getDate() {
+        return date;
     }
 }
