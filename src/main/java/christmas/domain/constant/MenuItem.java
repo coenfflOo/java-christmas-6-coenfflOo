@@ -24,6 +24,7 @@ public enum MenuItem {
     private final Category menu;
     private final String dish;
     private final int price;
+
     private final int weekend;
 
     MenuItem(Category menu, String dish, int price, int weekend) {
@@ -43,6 +44,10 @@ public enum MenuItem {
 
     public int getPrice() {
         return price;
+    }
+
+    public int getWeekend() {
+        return weekend;
     }
 
     // public void 이넘뽑기(){ for(MenuItem menu : values()){ } }

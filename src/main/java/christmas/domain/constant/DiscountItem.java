@@ -16,4 +16,11 @@ public enum DiscountItem {
     public String getDescription() {
         return description;
     }
+
+    public static DiscountItem getWeekDiscount(int week) {
+        if (week==1) {
+            return WEEKEND_DISCOUNT;
+        }
+        return WEEKLY_DISCOUNT;
+    }
 }

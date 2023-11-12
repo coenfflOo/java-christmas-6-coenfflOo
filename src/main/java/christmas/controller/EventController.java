@@ -6,6 +6,7 @@ import christmas.domain.Menu;
 import christmas.domain.constant.DiscountItem;
 import christmas.service.ChristmasDdayService;
 import christmas.service.PromotionEventService;
+import christmas.service.WeekEventService;
 import christmas.view.output.OutputView;
 
 public class EventController {
@@ -33,7 +34,8 @@ public class EventController {
 
     public void printBenefits(){
         christmasDdayService.checkEventDiscount(date,discount);
-
+        WeekEventService weekEventService = new WeekEventService(date,menu);
+        weekEventService.checkWeekDiscount(discount);
         OutputView.printDiscounts(discount);
     }
 

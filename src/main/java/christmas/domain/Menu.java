@@ -69,7 +69,7 @@ public class Menu {
         }
     }
 
-    private static Map<String, MenuItem> initMenuMap() {
+    public static Map<String, MenuItem> initMenuMap() {
         return Arrays.stream(MenuItem.values())
                 .collect(Collectors.toMap(MenuItem::getDish, Function.identity()));
     }
