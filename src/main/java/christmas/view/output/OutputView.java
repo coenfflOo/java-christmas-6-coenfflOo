@@ -1,9 +1,12 @@
 package christmas.view.output;
 
 import christmas.domain.Date;
+import christmas.domain.Discount;
 import christmas.domain.Menu;
+import christmas.domain.constant.DiscountItem;
 import christmas.view.constant.*;
 import java.util.Map;
+import java.util.Map.Entry;
 
 public class OutputView {
 
@@ -22,6 +25,13 @@ public class OutputView {
     public static void printPromotion(final String applyResult) {
         System.out.println(OutputMessage.RESPONSE_GIFT.getMessage());
         System.out.println(applyResult);
+    }
+
+    public static void printDiscounts(Discount discount) {
+        System.out.println(OutputMessage.RESPONSE_BENEFIT.getMessage());
+        for (Map.Entry<DiscountItem, Integer> entry : discount.getDiscounts().entrySet()) {
+            printBenefit(entry.getKey().getDescription(), entry.getValue());
+        }
     }
 
     private static void printDate(final int date) {

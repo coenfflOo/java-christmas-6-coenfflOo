@@ -1,16 +1,21 @@
 package christmas.service;
 
 import christmas.domain.Date;
-import christmas.domain.Menu;
+import christmas.domain.Discount;
+import christmas.domain.constant.DiscountItem;
 
-public class ChristmasEventService {
-    int christmasDiscount;
+public class ChristmasDdayService {
+    int christmasDiscount ;
 
-    public int calculateTotalDiscount(Date date, Menu menu) {
-        this.christmasDiscount -= calculateChristmasDiscount(date);
-        // 다른 할인 계산 로직 추가
 
-        return christmasDiscount;
+    public void checkEventDiscount(Date date, Discount discount) {
+        calculateTotalDiscount(date);
+        discount.addEventApplied(DiscountItem.CHRISTMAS_DDAY_DISCOUNT,christmasDiscount);
+    }
+
+    private void calculateTotalDiscount(Date date) {
+        this.christmasDiscount = 0;
+        christmasDiscount -= calculateChristmasDiscount(date);
     }
 
     private int calculateChristmasDiscount(Date date) {

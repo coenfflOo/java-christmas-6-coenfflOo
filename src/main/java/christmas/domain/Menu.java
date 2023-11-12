@@ -1,7 +1,7 @@
 package christmas.domain;
 
-import christmas.constant.menu.Category;
-import christmas.constant.menu.MenuItem;
+import christmas.domain.constant.Category;
+import christmas.domain.constant.MenuItem;
 import java.util.Arrays;
 import java.util.Map;
 import java.util.function.Function;
