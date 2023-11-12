@@ -38,7 +38,7 @@ public class EventController {
         weekEventService.checkWeekDiscount(discount);
         weekEventService.checkSpecialDiscount(discount);
         PromotionEventService promotionEventService = new PromotionEventService(menu);
-//        promotionEventService.checkPromotionDiscount(discount);
+        promotionEventService.checkPromotionDiscount(discount);
         OutputView.printDiscounts(discount);
     }
 

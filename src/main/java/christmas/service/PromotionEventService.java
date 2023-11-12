@@ -21,6 +21,10 @@ public class PromotionEventService {
         }
     }
 
+    public void checkPromotionDiscount(Discount discount) {
+        if (champagnePromotionApplied)
+            discount.addEventApplied(DiscountItem.PROMOTION_DISCOUNT, MenuItem.CHAMPAGNE.getPrice()*(-1)); //상수처리
+    }
 
     private boolean isChampagnePromotionEligible(int price){
         return price >= 120000; // 상수처리
