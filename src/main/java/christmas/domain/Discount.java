@@ -14,7 +14,7 @@ public class Discount {
     }
 
     public void addEventApplied(DiscountItem discountItem, int discountAmount) {
-        if (discountItem != null) {
+        if (discountItem != null && discountAmount < 0) {
             discounts.put(discountItem, discountAmount);
         }
     }

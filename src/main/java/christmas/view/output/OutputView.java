@@ -10,13 +10,13 @@ import java.util.Map.Entry;
 
 public class OutputView {
 
-    public static void printReservationCheck(Date date, Menu menu){
+    public static void printReservationCheck(Date date, Menu menu) {
         printDate(date.getDate());
         printOrderMenu(menu.getOrderMenu());
         printNewLine();
     }
 
-    public static void printOriginalPrice(final int price){
+    public static void printOriginalPrice(final int price) {
         System.out.println(OutputMessage.RESPONSE_PRICE.getMessage());
         printSeparator(price);
         printNewLine();
@@ -29,30 +29,30 @@ public class OutputView {
 
     public static void printDiscounts(Discount discount) {
         System.out.println(OutputMessage.RESPONSE_BENEFIT.getMessage());
-        if (!discount.getDiscounts().isEmpty()) {
-            for (Map.Entry<DiscountItem, Integer> entry : discount.getDiscounts().entrySet()) {
-                printBenefit(entry.getKey().getDescription(), entry.getValue());
-            }
-        }
+
         if (discount.getDiscounts().isEmpty()) {
             System.out.println(OutputMessage.NOTHING.getMessage());
         }
+        for (Map.Entry<DiscountItem, Integer> entry : discount.getDiscounts().entrySet()) {
+            printBenefit(entry.getKey().getDescription(), entry.getValue());
+        }
+
         printNewLine();
     }
 
-    public static void printTotalBenefits(int money){
+    public static void printTotalBenefits(int money) {
         System.out.println(OutputMessage.RESPONSE_DISCOUNT.getMessage());
         printSeparator(money);
         printNewLine();
     }
 
-    public static void printAfterBenefits(int money){
+    public static void printAfterBenefits(int money) {
         System.out.println(OutputMessage.RESPONSE_DC_PRICE.getMessage());
         printSeparator(money);
         printNewLine();
     }
 
-    public static void printBenefitBadge(String badge){
+    public static void printBenefitBadge(String badge) {
         System.out.println(OutputMessage.RESPONSE_BADGE.getMessage());
         System.out.println(badge);
     }
@@ -73,7 +73,7 @@ public class OutputView {
         System.out.println(data);
     }
 
-    public static void printNewLine(){
+    public static void printNewLine() {
         System.out.println();
     }
 
