@@ -43,12 +43,14 @@ public class OutputView {
     public static void printTotalBenefits(int money){
         System.out.println(OutputMessage.RESPONSE_DISCOUNT.getMessage());
         printSeparator(money);
+        printNewLine();
     }
 
-//    public static void printAfterBenefits(int money){
-//        System.out.println(OutputMessage.RESPONSE_DC_PRICE.getMessage());
-//        printSeparator(money);
-//    }
+    public static void printAfterBenefits(int money){
+        System.out.println(OutputMessage.RESPONSE_DC_PRICE.getMessage());
+        printSeparator(money);
+        printNewLine();
+    }
 
     private static void printDate(final int date) {
         System.out.printf(PrintFormat.RESPONSE_DATE.getFormat(), date);

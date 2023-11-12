@@ -28,7 +28,6 @@ public class EventController {
     public void printOfEvents(){
         PromotionEventService promotionEventService = new PromotionEventService(menu);
         OutputView.printPromotion(promotionEventService.isChampagnePromotionApplied());
-//        OutputView.printBenefits();
     }
 
     public void printBenefits(){
@@ -36,8 +35,8 @@ public class EventController {
         int totalMoney = benefitService.totalBenefits();
         OutputView.printDiscounts(discount);
         OutputView.printTotalBenefits(totalMoney);
-//        int payMoney = benefitService.afterBenefits();
-//        OutputView.printAfterBenefits(payMoney);
+        int payMoney = benefitService.afterBenefits();
+        OutputView.printAfterBenefits(payMoney);
     }
 
 }

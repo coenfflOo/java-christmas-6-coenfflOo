@@ -21,9 +21,9 @@ public class BenefitService {
         return christmasDday() + weeklyDiscount() + promotionDiscount();
     }
 
-//    public int afterBenefits(){
-//        return menu.getOriginalPrice() - onlyDiscountBenefits();
-//    }
+    public int afterBenefits(){
+        return menu.getOriginalPrice() + onlyDiscountBenefits();
+    }
 
     private int onlyDiscountBenefits(){
         return christmasDday() + weeklyDiscount();
