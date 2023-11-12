@@ -3,7 +3,11 @@ package christmas.service;
 import static christmas.view.constant.OutputMessage.APPLY_GIFT;
 import static christmas.view.constant.OutputMessage.NOTHING_GIFT;
 
+import christmas.domain.Discount;
 import christmas.domain.Menu;
+import christmas.domain.constant.DiscountItem;
+import christmas.domain.constant.MenuItem;
+import christmas.util.DateUtil;
 import christmas.view.constant.OutputMessage;
 import christmas.view.constant.PrintFormat;
 
@@ -16,6 +20,7 @@ public class PromotionEventService {
             champagnePromotionApplied = true;
         }
     }
+
 
     private boolean isChampagnePromotionEligible(int price){
         return price >= 120000; // 상수처리

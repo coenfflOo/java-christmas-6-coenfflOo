@@ -3,7 +3,6 @@ package christmas.controller;
 import christmas.domain.Date;
 import christmas.domain.Discount;
 import christmas.domain.Menu;
-import christmas.domain.constant.DiscountItem;
 import christmas.service.ChristmasDdayService;
 import christmas.service.PromotionEventService;
 import christmas.service.WeekEventService;
@@ -33,9 +32,13 @@ public class EventController {
     }
 
     public void printBenefits(){
-        christmasDdayService.checkEventDiscount(date,discount);
+
+        christmasDdayService.checkChristmasDiscount(date,discount);
         WeekEventService weekEventService = new WeekEventService(date,menu);
         weekEventService.checkWeekDiscount(discount);
+        weekEventService.checkSpecialDiscount(discount);
+        PromotionEventService promotionEventService = new PromotionEventService(menu);
+//        promotionEventService.checkPromotionDiscount(discount);
         OutputView.printDiscounts(discount);
     }
 

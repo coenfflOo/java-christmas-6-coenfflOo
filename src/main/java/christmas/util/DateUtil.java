@@ -4,7 +4,7 @@ import java.util.Calendar;
 
 public class DateUtil {
     private static final int year = 2023;
-    public static boolean isWeekday(int day) { // 평일이면 true
+    private static boolean isWeekday(int day) { // 평일이면 true
         Calendar calendar = Calendar.getInstance();
         calendar.set(year, Calendar.DECEMBER, day);
 
@@ -19,4 +19,14 @@ public class DateUtil {
             return 1;
         return 0;
     }
+
+    public static boolean isSpecialday(int day) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(year, Calendar.DECEMBER, day);
+
+        int dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
+
+        return dayOfWeek == Calendar.SUNDAY || day == 25;
+    }
+
 }

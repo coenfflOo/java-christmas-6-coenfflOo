@@ -3,12 +3,12 @@ package christmas.service;
 import christmas.domain.Date;
 import christmas.domain.Discount;
 import christmas.domain.constant.DiscountItem;
+import christmas.util.DateUtil;
 
 public class ChristmasDdayService {
     int christmasDiscount ;
 
-
-    public void checkEventDiscount(Date date, Discount discount) {
+    public void checkChristmasDiscount(Date date, Discount discount) {
         calculateTotalDiscount(date);
         discount.addEventApplied(DiscountItem.CHRISTMAS_DDAY_DISCOUNT,christmasDiscount);
     }

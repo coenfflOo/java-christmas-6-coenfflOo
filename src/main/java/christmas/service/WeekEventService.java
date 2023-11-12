@@ -11,17 +11,24 @@ import java.util.Map;
 
 public class WeekEventService {
 
+    private final Date date;
     private final Menu menu;
     private static int eventNumber;
 
     public WeekEventService(Date date, Menu menu) {
         eventNumber = DateUtil.isWeekend(date.getDate());
+        this.date = date;
         this.menu = menu;
     }
 
     public void checkWeekDiscount(Discount discount) {
         int price = countWeekendMenuItems() * (-2023);
         discount.addEventApplied(DiscountItem.getWeekDiscount(eventNumber),price);
+    }
+
+    public void checkSpecialDiscount(Discount discount) {
+        if (DateUtil.isSpecialday(date.getDate()))
+            discount.addEventApplied(DiscountItem.SPECIAL_DISCOUNT,-1000); //상수처리
     }
 
     private int countWeekendMenuItems() {

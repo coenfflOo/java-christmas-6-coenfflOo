@@ -18,7 +18,6 @@ public class Date {
     }
 
 
-
     private void validateMinimumDate(final int date) {
         if (isSmallerThanUnitDate(date)) {
             throw new ArithmeticException(); // 1보다 작음
