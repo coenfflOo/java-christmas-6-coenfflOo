@@ -21,14 +21,18 @@ public class WeekEventService {
         this.menu = menu;
     }
 
-    public void checkWeekDiscount(Discount discount) {
+    public int checkWeekDiscount(Discount discount) {
         int price = countWeekendMenuItems() * (-2023);
         discount.addEventApplied(DiscountItem.getWeekDiscount(eventNumber),price);
+        return price;
     }
 
-    public void checkSpecialDiscount(Discount discount) {
-        if (DateUtil.isSpecialday(date.getDate()))
-            discount.addEventApplied(DiscountItem.SPECIAL_DISCOUNT,-1000); //상수처리
+    public int checkSpecialDiscount(Discount discount) {
+        if (DateUtil.isSpecialday(date.getDate())) {
+            discount.addEventApplied(DiscountItem.SPECIAL_DISCOUNT, -1000); //상수처리
+            return -1000;
+        }
+        return 0;
     }
 
     private int countWeekendMenuItems() {

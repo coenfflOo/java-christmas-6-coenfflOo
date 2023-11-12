@@ -3,6 +3,7 @@ package christmas.controller;
 import christmas.domain.Date;
 import christmas.domain.Discount;
 import christmas.domain.Menu;
+import christmas.service.BenefitService;
 import christmas.service.ChristmasDdayService;
 import christmas.service.PromotionEventService;
 import christmas.service.WeekEventService;
@@ -12,7 +13,6 @@ public class EventController {
     Date date;
     Menu menu;
     Discount discount;
-    ChristmasDdayService christmasDdayService = new ChristmasDdayService();
 
     public EventController(Date date, Menu menu,Discount discount) {
         this.date = date;
@@ -32,14 +32,12 @@ public class EventController {
     }
 
     public void printBenefits(){
-
-        christmasDdayService.checkChristmasDiscount(date,discount);
-        WeekEventService weekEventService = new WeekEventService(date,menu);
-        weekEventService.checkWeekDiscount(discount);
-        weekEventService.checkSpecialDiscount(discount);
-        PromotionEventService promotionEventService = new PromotionEventService(menu);
-        promotionEventService.checkPromotionDiscount(discount);
+        BenefitService benefitService = new BenefitService(date, menu, discount);
+        int totalMoney = benefitService.totalBenefits();
         OutputView.printDiscounts(discount);
+        OutputView.printTotalBenefits(totalMoney);
+//        int payMoney = benefitService.afterBenefits();
+//        OutputView.printAfterBenefits(payMoney);
     }
 
 }

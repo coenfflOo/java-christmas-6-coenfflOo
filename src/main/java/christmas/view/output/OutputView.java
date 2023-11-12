@@ -29,10 +29,26 @@ public class OutputView {
 
     public static void printDiscounts(Discount discount) {
         System.out.println(OutputMessage.RESPONSE_BENEFIT.getMessage());
-        for (Map.Entry<DiscountItem, Integer> entry : discount.getDiscounts().entrySet()) {
-            printBenefit(entry.getKey().getDescription(), entry.getValue());
+        if (!discount.getDiscounts().isEmpty()) {
+            for (Map.Entry<DiscountItem, Integer> entry : discount.getDiscounts().entrySet()) {
+                printBenefit(entry.getKey().getDescription(), entry.getValue());
+            }
         }
+        if (discount.getDiscounts().isEmpty()) {
+            System.out.println(OutputMessage.NOTHING.getMessage());
+        }
+        printNewLine();
     }
+
+    public static void printTotalBenefits(int money){
+        System.out.println(OutputMessage.RESPONSE_DISCOUNT.getMessage());
+        printSeparator(money);
+    }
+
+//    public static void printAfterBenefits(int money){
+//        System.out.println(OutputMessage.RESPONSE_DC_PRICE.getMessage());
+//        printSeparator(money);
+//    }
 
     private static void printDate(final int date) {
         System.out.printf(PrintFormat.RESPONSE_DATE.getFormat(), date);

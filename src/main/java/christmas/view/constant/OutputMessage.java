@@ -5,7 +5,7 @@ public enum OutputMessage {
     RESPONSE_PRICE("<할인 전 총주문 금액>"),
     RESPONSE_GIFT("<증정 메뉴>"),
     APPLY_GIFT("샴페인 1개"),
-    NOTHING_GIFT("없음"),
+    NOTHING("없음"),
     RESPONSE_BENEFIT("<혜택 내역>"),
     RESPONSE_DISCOUNT("<총혜택 금액>"),
     RESPONSE_DC_PRICE("<할인 후 예상 결제 금액>"),
@@ -25,6 +25,6 @@ public enum OutputMessage {
         if (apply) {
             return APPLY_GIFT.getMessage() + System.lineSeparator();
         }
-        return NOTHING_GIFT.getMessage() + System.lineSeparator();
+        return NOTHING.getMessage() + System.lineSeparator();
     }
 }

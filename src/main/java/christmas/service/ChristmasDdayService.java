@@ -8,9 +8,10 @@ import christmas.util.DateUtil;
 public class ChristmasDdayService {
     int christmasDiscount ;
 
-    public void checkChristmasDiscount(Date date, Discount discount) {
+    public int checkChristmasDiscount(Date date, Discount discount) {
         calculateTotalDiscount(date);
         discount.addEventApplied(DiscountItem.CHRISTMAS_DDAY_DISCOUNT,christmasDiscount);
+        return christmasDiscount;
     }
 
     private void calculateTotalDiscount(Date date) {
