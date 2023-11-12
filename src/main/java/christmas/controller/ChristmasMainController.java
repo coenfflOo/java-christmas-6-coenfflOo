@@ -14,6 +14,7 @@ public class ChristmasMainController {
 
         eventController = new EventController(date,menu);
         eventController.checkReservation();
+        eventController.printOfEvents();
 
 
     }

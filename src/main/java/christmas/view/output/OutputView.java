@@ -13,12 +13,15 @@ public class OutputView {
         printNewLine();
     }
 
-    public static void println(final Object data) {
-        System.out.println(data);
+    public static void printOriginalPrice(final int price){
+        System.out.println(OutputMessage.RESPONSE_PRICE.getMessage());
+        printSeparator(price);
+        printNewLine();
     }
 
-    public static void printNewLine(){
-        System.out.println();
+    public static void printPromotion(final String applyResult) {
+        System.out.println(OutputMessage.RESPONSE_GIFT.getMessage());
+        System.out.println(applyResult);
     }
 
     private static void printDate(final int date) {
@@ -33,13 +36,16 @@ public class OutputView {
         }
     }
 
-    private static void printMenu(final String dish, final int quantity) {
-        System.out.printf(PrintFormat.MENU_FORMAT.getFormat(), dish, quantity);
+    public static void println(final Object data) {
+        System.out.println(data);
     }
 
-    public static void printOriginalPrice(final int price){
-        System.out.println(OutputMessage.RESPONSE_PRICE.getMessage());
-        printSeparator(price);
+    public static void printNewLine(){
+        System.out.println();
+    }
+
+    private static void printMenu(final String dish, final int quantity) {
+        System.out.printf(PrintFormat.MENU_FORMAT.getFormat(), dish, quantity);
     }
 
     public static void printSeparator(final int price) {

@@ -2,6 +2,7 @@ package christmas.controller;
 
 import christmas.domain.Date;
 import christmas.domain.Menu;
+import christmas.service.PromotionEventService;
 import christmas.view.output.OutputView;
 
 public class EventController {
@@ -19,6 +20,11 @@ public class EventController {
     public void checkReservation() {
         OutputView.printReservationCheck(date, menu);
         OutputView.printOriginalPrice(menu.getOriginalPrice());
+    }
+
+    public void printOfEvents(){
+        PromotionEventService promotionEventService = new PromotionEventService(menu);
+        OutputView.printPromotion(promotionEventService.isChampagnePromotionApplied());
     }
 
 }

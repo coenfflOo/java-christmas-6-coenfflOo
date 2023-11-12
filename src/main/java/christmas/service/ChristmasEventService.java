@@ -3,7 +3,7 @@ package christmas.service;
 import christmas.domain.Date;
 import christmas.domain.Menu;
 
-public class EventService {
+public class ChristmasEventService {
     int christmasDiscount;
 
     public int calculateTotalDiscount(Date date, Menu menu) {

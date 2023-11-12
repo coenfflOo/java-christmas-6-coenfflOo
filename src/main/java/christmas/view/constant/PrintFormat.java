@@ -30,13 +30,13 @@ public enum PrintFormat {
     }
 
     public static String formatBenefit(final String benefitName, final int amount) {
-        return String.format(BENEFIT_FORMAT.getFormat(), benefitName, SEPARATOR_FORMAT.getPriceFormat().format(amount));
+        return String.format(BENEFIT_FORMAT.getFormat(), benefitName, SEPARATOR_FORMAT.getPriceFormat().format(amount))+ System.lineSeparator();
     }
 
     public String formatPrice(int amount) {
         if (priceFormat != null) {
-            return priceFormat.format(amount);
+            return priceFormat.format(amount)+ System.lineSeparator();
         }
-        return SEPARATOR_FORMAT.getPriceFormat().format(amount);
+        return SEPARATOR_FORMAT.getPriceFormat().format(amount)+ System.lineSeparator();
     }
 }
