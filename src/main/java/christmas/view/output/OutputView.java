@@ -9,8 +9,8 @@ public class OutputView {
 
     public static void printReservationCheck(Date date, Menu menu){
         printDate(date.getDate());
-        printNewLine();
         printOrderMenu(menu.getOrderMenu());
+        printNewLine();
     }
 
     public static void println(final Object data) {
@@ -23,6 +23,7 @@ public class OutputView {
 
     private static void printDate(final int date) {
         System.out.printf(PrintFormat.RESPONSE_DATE.getFormat(), date);
+        printNewLine();
     }
 
     private static void printOrderMenu(Map<String, Integer> orderMenu) {
@@ -36,8 +37,13 @@ public class OutputView {
         System.out.printf(PrintFormat.MENU_FORMAT.getFormat(), dish, quantity);
     }
 
+    public static void printOriginalPrice(final int price){
+        System.out.println(OutputMessage.RESPONSE_PRICE.getMessage());
+        printSeparator(price);
+    }
+
     public static void printSeparator(final int price) {
-        System.out.printf(PrintFormat.SEPARATOR_FORMAT.getFormat(), price);
+        System.out.printf(PrintFormat.SEPARATOR_FORMAT.formatPrice(price));
     }
 
     public static void printBenefit(final String benefit, final int price) {

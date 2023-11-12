@@ -74,6 +74,19 @@ public class Menu {
                 .collect(Collectors.toMap(MenuItem::getDish, Function.identity()));
     }
 
+    public int getOriginalPrice() {
+        return orderMenu.entrySet().stream()
+                .mapToInt(this::calculateMenuItemTotalPrice)
+                .sum();
+    }
+
+    private int calculateMenuItemTotalPrice(Map.Entry<String, Integer> entry) {
+        String menuKey = entry.getKey();
+        int quantity = entry.getValue();
+        MenuItem menuItem = MENU_MAP.get(menuKey);
+        return menuItem.getPrice() * quantity;
+    }
+
     public Map<String, Integer> getOrderMenu() {
         return orderMenu;
     }
