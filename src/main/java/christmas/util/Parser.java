@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 public class Parser {
     private static final String DELIMITER = ",";
     private static final String HYPHEN = "-";
-    private static final String regex = "\\w+"+HYPHEN+"\\d+";
+    private static final String regex = "[\\w가-힣]+" + HYPHEN + "\\d+";
 
     private Parser() {
     }
@@ -61,8 +61,8 @@ public class Parser {
     private static void validateFormatWithHyphen(List<String> input) {
         boolean isValidFormat = input.stream()
                 .allMatch(Parser::isValidFormat);
-        if (isValidFormat) {
-            throw new IllegalArgumentException(IS_INVALID_DATE.getMessage());
+        if (!isValidFormat) {
+            throw new IllegalArgumentException(IS_INVALID_MENU.getMessage());
         }
     }
 
