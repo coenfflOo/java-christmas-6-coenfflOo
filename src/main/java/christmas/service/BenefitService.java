@@ -18,6 +18,8 @@ public class BenefitService {
 
 
     public int totalBenefits(){
+        if (menu.getOriginalPrice() < 10000)
+            return 0;
         return christmasDday() + weeklyDiscount() + promotionDiscount();
     }
 
@@ -30,6 +32,8 @@ public class BenefitService {
     }
 
     private int onlyDiscountBenefits(){
+        if (menu.getOriginalPrice() < 10000)
+            return 0;
         return christmasDday() + weeklyDiscount();
     }
 
