@@ -30,7 +30,6 @@ public class Menu {
     private void validateMenu(final Map<String, Integer> menu) {
         validateMenuExistence(menu);
         validateMenuQuantity(menu);
-        validateDuplicateMenu(menu);
         validateDrinkOnly(menu);
         validateMenuCount(menu);
     }
@@ -48,14 +47,6 @@ public class Menu {
             if (quantity < MIN_MENU_QUANTITY) {
                 throw ChristmasException.invalidMenu(new IllegalArgumentException());
             }
-        }
-    }
-
-    private void validateDuplicateMenu(final Map<String, Integer> menu) {
-        Set<String> uniqueMenuNames = new HashSet<>();
-
-        if (menu.keySet().stream().anyMatch(name -> !uniqueMenuNames.add(name))) {
-            throw ChristmasException.invalidMenu(new IllegalArgumentException());
         }
     }
 
