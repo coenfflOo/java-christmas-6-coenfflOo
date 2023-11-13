@@ -1,7 +1,5 @@
 package christmas.domain;
 
-import static christmas.exception.ExceptionMessage.IS_INVALID_MENU;
-
 import christmas.domain.constant.Category;
 import christmas.domain.constant.MenuItem;
 import christmas.exception.ChristmasException;
@@ -40,7 +38,7 @@ public class Menu {
     private void validateMenuExistence(final Map<String, Integer> menu) {
         for (String menuKey : menu.keySet()) {
             if (!MENU_MAP.containsKey(menuKey)) {
-                throw ChristmasException.invalidMenu(new IllegalArgumentException());
+                throw ChristmasException.invalidMenu(new IllegalStateException());
             }
         }
     }
@@ -66,7 +64,7 @@ public class Menu {
                 .anyMatch(menuKey -> MENU_MAP.get(menuKey).getMenu() != Category.DRINK);
 
         if (!containsNonDrink) {
-            throw ChristmasException.invalidMenu(new IllegalArgumentException());
+            throw ChristmasException.invalidMenu(new IllegalStateException());
         }
     }
 
