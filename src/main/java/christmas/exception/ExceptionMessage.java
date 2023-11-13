@@ -1,4 +1,4 @@
-package christmas.view.constant;
+package christmas.exception;
 
 public enum ExceptionMessage {
     ERROR("[ERROR] "),
@@ -12,6 +12,6 @@ public enum ExceptionMessage {
     }
 
     public String getMessage() {
-        return ERROR.message + message;
+        return message;
     }
 }

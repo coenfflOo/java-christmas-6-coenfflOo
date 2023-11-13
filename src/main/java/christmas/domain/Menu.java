@@ -1,9 +1,10 @@
 package christmas.domain;
 
-import static christmas.view.constant.ExceptionMessage.IS_INVALID_MENU;
+import static christmas.exception.ExceptionMessage.IS_INVALID_MENU;
 
 import christmas.domain.constant.Category;
 import christmas.domain.constant.MenuItem;
+import christmas.exception.ChristmasException;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Map;
@@ -12,6 +13,7 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class Menu {
+    private static final int MIN_MENU_QUANTITY = 1;
     private static final int MAX_MENU_COUNT = 20;
 
     private final Map<String, Integer> orderMenu;
@@ -38,15 +40,15 @@ public class Menu {
     private void validateMenuExistence(final Map<String, Integer> menu) {
         for (String menuKey : menu.keySet()) {
             if (!MENU_MAP.containsKey(menuKey)) {
-                throw new IllegalArgumentException(IS_INVALID_MENU.getMessage()); //메뉴판에 없는 메뉴
+                throw ChristmasException.invalidMenu(new IllegalArgumentException());
             }
         }
     }
 
     private void validateMenuQuantity(final Map<String, Integer> menu) {
         for (int quantity : menu.values()) {
-            if (quantity < 1) {
-                throw new IllegalArgumentException(IS_INVALID_MENU.getMessage()); //메뉴의 개수는 1 이상
+            if (quantity < MIN_MENU_QUANTITY) {
+                throw ChristmasException.invalidMenu(new IllegalArgumentException());
             }
         }
     }
@@ -55,7 +57,7 @@ public class Menu {
         Set<String> uniqueMenuNames = new HashSet<>();
 
         if (menu.keySet().stream().anyMatch(name -> !uniqueMenuNames.add(name))) {
-            throw new IllegalArgumentException(IS_INVALID_MENU.getMessage()); // 중복된 메뉴
+            throw ChristmasException.invalidMenu(new IllegalArgumentException());
         }
     }
 
@@ -64,7 +66,7 @@ public class Menu {
                 .anyMatch(menuKey -> MENU_MAP.get(menuKey).getMenu() != Category.DRINK);
 
         if (!containsNonDrink) {
-            throw new IllegalArgumentException(IS_INVALID_MENU.getMessage());
+            throw ChristmasException.invalidMenu(new IllegalArgumentException());
         }
     }
 
@@ -73,7 +75,7 @@ public class Menu {
                 .mapToInt(Integer::intValue)
                 .sum();
         if (totalCount > MAX_MENU_COUNT) {
-            throw new IllegalArgumentException(IS_INVALID_MENU.getMessage());
+            throw ChristmasException.invalidMenu(new IllegalArgumentException());
         }
     }
 

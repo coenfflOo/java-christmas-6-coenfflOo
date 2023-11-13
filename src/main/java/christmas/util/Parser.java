@@ -1,9 +1,11 @@
 package christmas.util;
 
-import static christmas.view.constant.ExceptionMessage.ERROR;
-import static christmas.view.constant.ExceptionMessage.IS_INVALID_MENU;
+import static christmas.exception.ExceptionMessage.ERROR;
+import static christmas.exception.ExceptionMessage.IS_INVALID_DATE;
+import static christmas.exception.ExceptionMessage.IS_INVALID_MENU;
 
-import christmas.view.constant.ExceptionMessage;
+import christmas.exception.ChristmasException;
+import christmas.exception.ExceptionMessage;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
@@ -22,16 +24,16 @@ public class Parser {
 
     public static int parseStringToInt(String input) {
         try {
-            validateContainSpace(input);
+            validateDateContainSpace(input);
             return Integer.parseInt(input);
         } catch (NumberFormatException exception) {
-            throw new NumberFormatException(ExceptionMessage.IS_INVALID_DATE.getMessage());
+            throw ChristmasException.invalidDate(new NumberFormatException());
         }
     }
 
     public static Map<String, Integer> parseStringToMap(String input) {
         try {
-            validateContainSpace(input);
+            validateMenuContainSpace(input);
             List<String> splitInput = validateEndsWithDelimiter(input);
             validateFormatWithHyphen(splitInput);
             validateDuplicateMenu(splitInput);
@@ -41,19 +43,25 @@ public class Parser {
                             s -> Integer.parseInt(s.split(HYPHEN)[1])
                     ));
         } catch (IllegalArgumentException exception) {
-            throw new IllegalArgumentException(IS_INVALID_MENU.getMessage());
+            throw ChristmasException.invalidMenu(new IllegalArgumentException());
         }
     }
 
-    private static void validateContainSpace(String input) {
+    private static void validateDateContainSpace(String input) {
         if (hasWhiteSpace(input)) {
-            throw new IllegalArgumentException(ERROR.getMessage());
+            throw ChristmasException.invalidDate(new IllegalArgumentException());
+        }
+    }
+
+    private static void validateMenuContainSpace(String input) {
+        if (hasWhiteSpace(input)) {
+            throw ChristmasException.invalidMenu(new IllegalArgumentException());
         }
     }
 
     private static List<String> validateEndsWithDelimiter(String input) {
         if (isEndsWithDelimiter(input)) {
-            throw new IllegalArgumentException(IS_INVALID_MENU.getMessage());
+            throw ChristmasException.invalidMenu(new IllegalArgumentException());
         }
         return Arrays.stream(input.split(DELIMITER))
                 .toList();
@@ -64,14 +72,14 @@ public class Parser {
         boolean isValidFormat = input.stream()
                 .allMatch(Parser::isValidFormat);
         if (!isValidFormat) {
-            throw new IllegalArgumentException(IS_INVALID_MENU.getMessage());
+            throw ChristmasException.invalidMenu(new IllegalArgumentException());
         }
     }
 
     private static void validateDuplicateMenu(List<String> input) {
         Set<String> uniqueMenuNames = new HashSet<>();
         if (input.stream().anyMatch(name -> !uniqueMenuNames.add(name))) {
-            throw new IllegalArgumentException(IS_INVALID_MENU.getMessage()); // 중복된 메뉴
+            throw ChristmasException.invalidMenu(new IllegalArgumentException());
         }
     }
 

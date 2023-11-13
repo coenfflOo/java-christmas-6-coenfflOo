@@ -1,12 +1,15 @@
 package christmas.service;
 
+import static christmas.util.DateUtil.isChristmasDay;
+
 import christmas.domain.Date;
 import christmas.domain.Discount;
 import christmas.domain.constant.DiscountItem;
-import christmas.util.DateUtil;
 
-public class ChristmasDdayService {
-    int christmasDiscount ;
+public class ChristmasDDayService {
+    private static final int DAILY_DISCOUNT = 100;
+    private static final int FIRST_DAY_DISCOUNT = 1000;
+    int christmasDiscount;
 
     public int checkChristmasDiscount(Date date, Discount discount) {
         calculateTotalDiscount(date);
@@ -24,11 +27,7 @@ public class ChristmasDdayService {
         return 0;
     }
 
-    private static boolean isChristmasDay(final int date) {
-        return date >= 1 && date <= 25; // 상수처리
-    }
-
     private static int calculateDailyDiscount(int daysUntilChristmas) {
-        return 1000 + ((daysUntilChristmas-1) * 100);
+        return 1000 + ((FIRST_DAY_DISCOUNT-1) * DAILY_DISCOUNT);
     }
 }

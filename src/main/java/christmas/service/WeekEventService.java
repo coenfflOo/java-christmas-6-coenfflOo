@@ -14,6 +14,8 @@ public class WeekEventService {
     private final Date date;
     private final Menu menu;
     private static int eventNumber;
+    private final int WEEK_DISCOUNT = 2023;
+    private final int SPECIAL_DISCOUNT = 1000;
 
     public WeekEventService(Date date, Menu menu) {
         eventNumber = DateUtil.isWeekend(date.getDate());
@@ -22,15 +24,15 @@ public class WeekEventService {
     }
 
     public int checkWeekDiscount(Discount discount) {
-        int price = countWeekendMenuItems() * 2023;
+        int price = countWeekendMenuItems() * WEEK_DISCOUNT;
         discount.addEventApplied(DiscountItem.getWeekDiscount(eventNumber),price);
         return price;
     }
 
     public int checkSpecialDiscount(Discount discount) {
         if (DateUtil.isSpecialDay(date.getDate())) {
-            discount.addEventApplied(DiscountItem.SPECIAL_DISCOUNT, 1000); //상수처리
-            return 1000;
+            discount.addEventApplied(DiscountItem.SPECIAL_DISCOUNT, SPECIAL_DISCOUNT); //상수처리
+            return SPECIAL_DISCOUNT;
         }
         return 0;
     }

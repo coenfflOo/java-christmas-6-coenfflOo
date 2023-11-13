@@ -1,14 +1,16 @@
 package christmas.domain;
 
-import static christmas.view.constant.ExceptionMessage.IS_INVALID_DATE;
+import static christmas.exception.ExceptionMessage.IS_INVALID_DATE;
+import static christmas.util.DateUtil.isNotDayAMonth;
+
+import christmas.exception.ChristmasException;
 
 public class Date {
 
     private final int date;
 
     private Date(int date) {
-        validateMinimumDate(date);
-        validateMaximumDate(date);
+        validateDateOfMonth(date);
         this.date = date;
     }
 
@@ -18,26 +20,11 @@ public class Date {
     }
 
 
-    private void validateMinimumDate(final int date) {
-        if (isSmallerThanUnitDate(date)) {
-            throw new IllegalArgumentException(IS_INVALID_DATE.getMessage()); // 1보다 작음
+    private void validateDateOfMonth(final int date) {
+        if (isNotDayAMonth(date)) {
+            throw ChristmasException.invalidDate(new IllegalArgumentException());
         }
     }
-
-    private void validateMaximumDate(final int date) {
-        if (isBiggerThanMaximumDate(date)) {
-            throw new IllegalArgumentException(IS_INVALID_DATE.getMessage()); //31보다 큼
-        }
-    }
-
-    private boolean isBiggerThanMaximumDate(final int date) {
-        return date > 31; // 상수처리
-    }
-
-    private boolean isSmallerThanUnitDate(final int date) {
-        return date < 1; // 상수처리
-    }
-
 
     public int getDate() {
         return date;

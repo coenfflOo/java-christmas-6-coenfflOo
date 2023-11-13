@@ -7,6 +7,7 @@ import christmas.domain.constant.MenuItem;
 import christmas.view.constant.OutputMessage;
 
 public class PromotionEventService {
+    private final int PROMOTION_STANDARD = 120_000;
 
     private boolean champagnePromotionApplied;
 
@@ -18,14 +19,14 @@ public class PromotionEventService {
 
     public int checkPromotionDiscount(Discount discount) {
         if (champagnePromotionApplied) {
-            discount.addEventApplied(DiscountItem.PROMOTION_DISCOUNT, MenuItem.CHAMPAGNE.getPrice()); //상수처리
+            discount.addEventApplied(DiscountItem.PROMOTION_DISCOUNT, MenuItem.CHAMPAGNE.getPrice());
             return MenuItem.CHAMPAGNE.getPrice();
         }
         return 0;
     }
 
     private boolean isChampagnePromotionEligible(int price){
-        return price >= 120000; // 상수처리
+        return price >= PROMOTION_STANDARD;
     }
 
     public String isChampagnePromotionApplied() {

@@ -9,6 +9,7 @@ public class BenefitService {
     private final Date date;
     private final Menu menu;
     private final Discount discount;
+    private final int MIN_ORDER_PRICE = 10_000;
 
     public BenefitService(Date date, Menu menu, Discount discount) {
         this.date = date;
@@ -18,7 +19,7 @@ public class BenefitService {
 
 
     public int totalBenefits(){
-        if (menu.getOriginalPrice() < 10000)
+        if (menu.getOriginalPrice() < MIN_ORDER_PRICE)
             return 0;
         return christmasDday() + weeklyDiscount() + promotionDiscount();
     }
@@ -32,13 +33,13 @@ public class BenefitService {
     }
 
     private int onlyDiscountBenefits(){
-        if (menu.getOriginalPrice() < 10000)
+        if (menu.getOriginalPrice() < MIN_ORDER_PRICE)
             return 0;
         return christmasDday() + weeklyDiscount();
     }
 
     private int christmasDday(){
-        ChristmasDdayService christmasDdayService = new ChristmasDdayService();
+        ChristmasDDayService christmasDdayService = new ChristmasDDayService();
         return christmasDdayService.checkChristmasDiscount(date,discount);
     }
 
