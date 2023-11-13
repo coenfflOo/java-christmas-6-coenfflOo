@@ -25,7 +25,7 @@ public class PromotionEventService {
         return 0;
     }
 
-    private boolean isChampagnePromotionEligible(int price){
+    private boolean isChampagnePromotionEligible(int price) {
         return price >= PROMOTION_STANDARD;
     }
 

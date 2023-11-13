@@ -8,10 +8,10 @@ public class ChristmasMainController {
     private ChristmasMainController() {
     }
 
-    public static void start(){
+    public static void start() {
         Date date = DateController.requestDate();
         Menu menu = MenuController.requestMenu();
-        Discount discount = DiscountController.from(date,menu);
-        BenefitsController.from(date,menu,discount);
+        Discount discount = DiscountController.from(date, menu);
+        BenefitsController.from(date, menu, discount);
     }
 }

@@ -15,14 +15,6 @@ public enum BadgeItem {
         this.standard = standard;
     }
 
-    public String getIcon() {
-        return icon;
-    }
-
-    public int getStandard() {
-        return standard;
-    }
-
     public static String getIconForValue(int value) {
         for (BadgeItem badgeItem : values()) {
             if (value >= badgeItem.standard) {

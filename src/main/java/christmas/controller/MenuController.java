@@ -11,7 +11,7 @@ public class MenuController {
     private MenuController() {
     }
 
-    public static Menu requestMenu(){
+    public static Menu requestMenu() {
         OutputView.println(REQUEST_MENU.getMessage());
         return readMenuInfo();
     }

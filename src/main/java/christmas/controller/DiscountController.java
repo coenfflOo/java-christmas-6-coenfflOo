@@ -17,23 +17,23 @@ public class DiscountController {
     }
 
     public static Discount from(final Date date, final Menu menu) {
-        new DiscountController(date,menu);
+        new DiscountController(date, menu);
         return new Discount();
     }
 
-    private void discountBenefits(){
+    private void discountBenefits() {
         checkReservation();
         checkPromotion();
     }
 
     private void checkReservation() {
-        OutputView.printReservationCheck(date, menu); // 날짜, 주문 확인 출력
-        OutputView.printOriginalPrice(menu.getOriginalPrice()); // 할인 전 총 주문 금액
+        OutputView.printReservationCheck(date, menu);
+        OutputView.printOriginalPrice(menu.getOriginalPrice());
     }
 
     private void checkPromotion() {
         PromotionEventService promotionEventService = new PromotionEventService(menu);
-        OutputView.printPromotion(promotionEventService.isChampagnePromotionApplied()); // 증정 메뉴
+        OutputView.printPromotion(promotionEventService.isChampagnePromotionApplied());
     }
 
 }

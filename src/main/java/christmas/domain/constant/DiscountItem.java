@@ -18,7 +18,7 @@ public enum DiscountItem {
     }
 
     public static DiscountItem getWeekDiscount(int week) {
-        if (week==1) {
+        if (week == 1) {
             return WEEKEND_DISCOUNT;
         }
         return WEEKLY_DISCOUNT;

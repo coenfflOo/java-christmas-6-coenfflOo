@@ -1,6 +1,5 @@
 package christmas.domain;
 
-import static christmas.exception.ExceptionMessage.IS_INVALID_DATE;
 import static christmas.util.DateUtil.isNotDayAMonth;
 
 import christmas.exception.ChristmasException;

@@ -17,23 +17,23 @@ public class BenefitsController {
     }
 
     public static void from(final Date date, final Menu menu, final Discount discount) {
-        new BenefitsController(date,menu,discount);
+        new BenefitsController(date, menu, discount);
     }
 
-    private void benefitEvents(){
+    private void benefitEvents() {
         checkBenefits();
         applyBenefits();
     }
 
-    public void checkBenefits(){
+    public void checkBenefits() {
         int totalMoney = benefitService.totalBenefits();
-        OutputView.printDiscounts(discount); // 혜택 내역
-        OutputView.printTotalBenefits(totalMoney); // 총 혜택 금액
+        OutputView.printDiscounts(discount);
+        OutputView.printTotalBenefits(totalMoney);
     }
 
-    public void applyBenefits(){
-        int payMoney = benefitService.afterBenefits(); //할인 후 예상 금액
+    public void applyBenefits() {
+        int payMoney = benefitService.afterBenefits();
         OutputView.printAfterBenefits(payMoney);
-        OutputView.printBenefitBadge(benefitService.benefitBadge()); // 12월 이벤트 배지
+        OutputView.printBenefitBadge(benefitService.benefitBadge());
     }
 }

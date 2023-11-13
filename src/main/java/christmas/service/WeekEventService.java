@@ -25,7 +25,7 @@ public class WeekEventService {
 
     public int checkWeekDiscount(Discount discount) {
         int price = countWeekendMenuItems() * WEEK_DISCOUNT;
-        discount.addEventApplied(DiscountItem.getWeekDiscount(eventNumber),price);
+        discount.addEventApplied(DiscountItem.getWeekDiscount(eventNumber), price);
         return price;
     }
 
@@ -40,8 +40,8 @@ public class WeekEventService {
     private int countWeekendMenuItems() {
         return menu.getOrderMenu().entrySet().stream()
                 .filter(this::isMenuItemWeekend)
-                .mapToInt(Map.Entry::getValue) // 각 메뉴의 주문 수량을 가져오기
-                .sum(); // 주문 수량의 합을 반환
+                .mapToInt(Map.Entry::getValue)
+                .sum();
     }
 
 
