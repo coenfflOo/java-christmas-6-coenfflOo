@@ -13,7 +13,7 @@ public class ChristmasDDayService {
 
     public int checkChristmasDiscount(Date date, Discount discount) {
         calculateTotalDiscount(date);
-        discount.addEventApplied(DiscountItem.CHRISTMAS_DDAY_DISCOUNT,christmasDiscount);
+        discount.addEventApplied(DiscountItem.CHRISTMAS_DDAY_DISCOUNT, christmasDiscount);
         return christmasDiscount;
     }
 
@@ -22,12 +22,13 @@ public class ChristmasDDayService {
     }
 
     private int calculateChristmasDiscount(Date date) {
-        if (isBeforeChristmasDay(date.getDate()))
+        if (isBeforeChristmasDay(date.getDate())) {
             return calculateDailyDiscount(date.getDate());
+        }
         return 0;
     }
 
     private static int calculateDailyDiscount(int daysUntilChristmas) {
-        return FIRST_DAY_DISCOUNT + ((daysUntilChristmas-1) * DAILY_DISCOUNT);
+        return FIRST_DAY_DISCOUNT + ((daysUntilChristmas - 1) * DAILY_DISCOUNT);
     }
 }
