@@ -1,6 +1,6 @@
 package christmas.service;
 
-import static christmas.util.DateUtil.isChristmasDay;
+import static christmas.util.DateUtil.isBeforeChristmasDay;
 
 import christmas.domain.Date;
 import christmas.domain.Discount;
@@ -22,7 +22,7 @@ public class ChristmasDDayService {
     }
 
     private int calculateChristmasDiscount(Date date) {
-        if (isChristmasDay(date.getDate()))
+        if (isBeforeChristmasDay(date.getDate()))
             return calculateDailyDiscount(date.getDate());
         return 0;
     }

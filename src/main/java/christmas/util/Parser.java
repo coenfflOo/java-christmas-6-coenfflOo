@@ -1,11 +1,6 @@
 package christmas.util;
 
-import static christmas.exception.ExceptionMessage.ERROR;
-import static christmas.exception.ExceptionMessage.IS_INVALID_DATE;
-import static christmas.exception.ExceptionMessage.IS_INVALID_MENU;
-
 import christmas.exception.ChristmasException;
-import christmas.exception.ExceptionMessage;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
@@ -79,7 +74,7 @@ public class Parser {
     private static void validateDuplicateMenu(List<String> input) {
         Set<String> uniqueMenuNames = new HashSet<>();
         if (input.stream().anyMatch(name -> !uniqueMenuNames.add(name))) {
-            throw ChristmasException.invalidMenu(new IllegalArgumentException());
+            throw ChristmasException.invalidMenu(new IllegalStateException());
         }
     }
 

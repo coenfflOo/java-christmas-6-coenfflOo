@@ -18,8 +18,7 @@ public class DateUtil {
     }
 
     public static int isWeekend(int day) {
-        if (!isWeekday(day))
-        {
+        if (!isWeekday(day)) {
             return 1;
         }
         return 0;
@@ -38,7 +37,7 @@ public class DateUtil {
         return isBiggerThanMaximumDate(date) || isSmallerThanUnitDate(date);
     }
 
-    public static boolean isChristmasDay(final int date) {
+    public static boolean isBeforeChristmasDay(final int date) {
         return date >= FIRST_DAY && date <= CHRISTMAS;
     }
 
