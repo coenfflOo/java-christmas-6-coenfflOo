@@ -7,16 +7,20 @@ import java.util.Map;
 
 public class Discount {
 
-    private Map<DiscountItem, Integer> discounts;
+    private final Map<DiscountItem, Integer> discounts;
 
     public Discount() {
         this.discounts = new HashMap<>();
     }
 
     public void addEventApplied(DiscountItem discountItem, int discountAmount) {
-        if (discountItem != null && discountAmount < 0) {
+        if (isValidDiscount(discountItem, discountAmount)) {
             discounts.put(discountItem, discountAmount);
         }
+    }
+
+    private boolean isValidDiscount(DiscountItem discountItem, int discountAmount) {
+        return discountItem != null && discountAmount > 0;
     }
 
     public Map<DiscountItem, Integer> getDiscounts() {

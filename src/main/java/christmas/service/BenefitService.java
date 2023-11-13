@@ -24,11 +24,11 @@ public class BenefitService {
     }
 
     public int afterBenefits(){
-        return menu.getOriginalPrice() + onlyDiscountBenefits();
+        return menu.getOriginalPrice() - onlyDiscountBenefits();
     }
 
     public String benefitBadge(){
-        return BadgeItem.getIconForValue(Math.abs(totalBenefits()));
+        return BadgeItem.getIconForValue(totalBenefits());
     }
 
     private int onlyDiscountBenefits(){

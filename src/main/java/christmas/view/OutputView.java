@@ -1,4 +1,4 @@
-package christmas.view.output;
+package christmas.view;
 
 import christmas.domain.Date;
 import christmas.domain.Discount;
@@ -6,9 +6,9 @@ import christmas.domain.Menu;
 import christmas.domain.constant.DiscountItem;
 import christmas.view.constant.*;
 import java.util.Map;
-import java.util.Map.Entry;
 
 public class OutputView {
+    public static final int changeToNegative = -1;
 
     public static void printReservationCheck(Date date, Menu menu) {
         printDate(date.getDate());
@@ -34,7 +34,7 @@ public class OutputView {
             System.out.println(OutputMessage.NOTHING.getMessage());
         }
         for (Map.Entry<DiscountItem, Integer> entry : discount.getDiscounts().entrySet()) {
-            printBenefit(entry.getKey().getDescription(), entry.getValue());
+            printBenefit(entry.getKey().getDescription(), entry.getValue() * changeToNegative);
         }
 
         printNewLine();
@@ -42,7 +42,7 @@ public class OutputView {
 
     public static void printTotalBenefits(int money) {
         System.out.println(OutputMessage.RESPONSE_DISCOUNT.getMessage());
-        printSeparator(money);
+        printSeparator(money * changeToNegative);
         printNewLine();
     }
 

@@ -35,8 +35,8 @@ public enum PrintFormat {
 
     public String formatPrice(int amount) {
         if (priceFormat != null) {
-            return priceFormat.format(amount)+ System.lineSeparator();
+            return priceFormat.format(amount) + System.lineSeparator();
         }
-        return SEPARATOR_FORMAT.getPriceFormat().format(amount)+ System.lineSeparator();
+        return SEPARATOR_FORMAT.getPriceFormat().format(amount) + System.lineSeparator();
     }
 }

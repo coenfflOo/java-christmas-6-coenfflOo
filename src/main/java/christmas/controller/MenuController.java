@@ -1,11 +1,10 @@
 package christmas.controller;
 
 import static christmas.view.constant.InputMessage.REQUEST_MENU;
-import static christmas.view.input.InputView.readMenuInfo;
+import static christmas.view.InputView.readMenuInfo;
 
-import christmas.domain.Date;
 import christmas.domain.Menu;
-import christmas.view.output.OutputView;
+import christmas.view.OutputView;
 
 public class MenuController {
 

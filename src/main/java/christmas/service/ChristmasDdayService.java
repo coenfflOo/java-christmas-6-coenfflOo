@@ -15,8 +15,7 @@ public class ChristmasDdayService {
     }
 
     private void calculateTotalDiscount(Date date) {
-        this.christmasDiscount = 0;
-        christmasDiscount -= calculateChristmasDiscount(date);
+        this.christmasDiscount = calculateChristmasDiscount(date);
     }
 
     private int calculateChristmasDiscount(Date date) {

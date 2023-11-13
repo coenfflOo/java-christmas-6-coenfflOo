@@ -1,8 +1,6 @@
 package christmas.domain;
 
-import static christmas.constant.Message.ExceptionMessage.IS_INVALID_DATE;
-
-import christmas.constant.Message.ExceptionMessage;
+import static christmas.view.constant.ExceptionMessage.IS_INVALID_DATE;
 
 public class Date {
 

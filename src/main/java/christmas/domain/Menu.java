@@ -1,6 +1,6 @@
 package christmas.domain;
 
-import static christmas.constant.Message.ExceptionMessage.IS_INVALID_MENU;
+import static christmas.view.constant.ExceptionMessage.IS_INVALID_MENU;
 
 import christmas.domain.constant.Category;
 import christmas.domain.constant.MenuItem;
@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 public class Menu {
     private static final int MAX_MENU_COUNT = 20;
 
-    private Map<String, Integer> orderMenu;
+    private final Map<String, Integer> orderMenu;
     private static final Map<String, MenuItem> MENU_MAP = initMenuMap();
 
 

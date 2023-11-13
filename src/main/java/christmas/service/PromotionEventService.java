@@ -18,8 +18,8 @@ public class PromotionEventService {
 
     public int checkPromotionDiscount(Discount discount) {
         if (champagnePromotionApplied) {
-            discount.addEventApplied(DiscountItem.PROMOTION_DISCOUNT, MenuItem.CHAMPAGNE.getPrice() * (-1)); //상수처리
-            return MenuItem.CHAMPAGNE.getPrice() * (-1);
+            discount.addEventApplied(DiscountItem.PROMOTION_DISCOUNT, MenuItem.CHAMPAGNE.getPrice()); //상수처리
+            return MenuItem.CHAMPAGNE.getPrice();
         }
         return 0;
     }

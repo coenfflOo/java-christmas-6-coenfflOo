@@ -49,6 +49,4 @@ public enum MenuItem {
     public int getWeekend() {
         return weekend;
     }
-
-    // public void 이넘뽑기(){ for(MenuItem menu : values()){ } }
 }

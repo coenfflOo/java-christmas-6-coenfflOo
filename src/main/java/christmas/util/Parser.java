@@ -1,10 +1,9 @@
 package christmas.util;
 
-import static christmas.constant.Message.ExceptionMessage.ERROR;
-import static christmas.constant.Message.ExceptionMessage.IS_INVALID_DATE;
-import static christmas.constant.Message.ExceptionMessage.IS_INVALID_MENU;
+import static christmas.view.constant.ExceptionMessage.ERROR;
+import static christmas.view.constant.ExceptionMessage.IS_INVALID_MENU;
 
-import christmas.constant.Message.ExceptionMessage;
+import christmas.view.constant.ExceptionMessage;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;

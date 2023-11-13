@@ -1,4 +1,4 @@
-package christmas.view.input;
+package christmas.view;
 
 import christmas.domain.Date;
 import christmas.domain.Menu;
