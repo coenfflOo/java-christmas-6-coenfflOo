@@ -1,7 +1,9 @@
 package christmas.domain;
 
+import christmas.domain.constant.MenuItem;
 import christmas.exception.ChristmasException;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -97,5 +99,16 @@ class MenuTest {
                 new Object[]{Map.of("해산물파스타", 1, "샴페인", 3), 110_000},
                 new Object[]{Map.of("양송이수프", 2, "초코케이크", 1, "제로콜라", 3), 36_000}
         );
+    }
+
+    @Test
+    @DisplayName("메뉴 아이템 초기화 테스트")
+    void initMenuMap() {
+        // When
+        Map<String, MenuItem> menuMap = Menu.initMenuMap();
+
+        // Then
+        assertThat(menuMap).isNotNull();
+        assertThat(menuMap).hasSize(MenuItem.values().length);
     }
 }

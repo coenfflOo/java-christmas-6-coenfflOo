@@ -44,12 +44,10 @@ public class WeekEventService {
                 .sum();
     }
 
-
     private boolean isMenuItemWeekend(Map.Entry<String, Integer> entry) {
         String menuKey = entry.getKey();
         MenuItem menuItem = Menu.initMenuMap().get(menuKey);
         return menuItem.getWeekend() == eventNumber;
     }
-
 
 }
