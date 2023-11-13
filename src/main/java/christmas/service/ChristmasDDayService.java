@@ -28,6 +28,6 @@ public class ChristmasDDayService {
     }
 
     private static int calculateDailyDiscount(int daysUntilChristmas) {
-        return 1000 + ((FIRST_DAY_DISCOUNT-1) * DAILY_DISCOUNT);
+        return FIRST_DAY_DISCOUNT + ((daysUntilChristmas-1) * DAILY_DISCOUNT);
     }
 }
