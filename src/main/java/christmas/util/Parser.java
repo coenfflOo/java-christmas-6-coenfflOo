@@ -73,8 +73,11 @@ public class Parser {
 
     private static void validateDuplicateMenu(List<String> input) {
         Set<String> uniqueMenuNames = new HashSet<>();
-        if (input.stream().anyMatch(name -> !uniqueMenuNames.add(name))) {
-            throw ChristmasException.invalidMenu(new IllegalStateException());
+        for (String menuItem : input) {
+            String menuName = menuItem.split(HYPHEN)[0];
+            if (!uniqueMenuNames.add(menuName)) {
+                throw ChristmasException.invalidMenu(new IllegalStateException());
+            }
         }
     }
 

@@ -2,8 +2,8 @@ package christmas.util;
 
 import christmas.exception.ChristmasException;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.*;
@@ -31,46 +31,41 @@ public class ParserTest {
 
     @ParameterizedTest
     @ValueSource(strings = {" 12", "5 8", "31 ", "", " "})
-    @DisplayName("숫자 외의 값 입력시 예외 발생")
+    @DisplayName("숫자 외의 공백 포함 값 입력시 예외 발생")
     void parseStringToInt_InvalidInput_IllegalArgumentException(String input) {
         assertThatThrownBy(() -> Parser.parseStringToInt(input))
                 .isInstanceOf(ChristmasException.class)
                 .hasCauseInstanceOf(IllegalArgumentException.class);
     }
 
-    @ParameterizedTest
-    @CsvSource({"Turkey-10,Ham-20,Pie-15"})
-    @DisplayName("올바른 메뉴 입력 시 파싱 여부")
-    void parseStringToMap_ValidInput_ReturnsMap(String input) {
-        Map<String, Integer> result = Parser.parseStringToMap(input);
-        assertThat(result).isNotEmpty();
-        assertThat(result.keySet()).containsExactly("Turkey");
-        assertThat(result.values()).containsExactly(10);
+    @Test
+    @DisplayName("정상적인 메뉴 문자열을 Map으로 파싱")
+    void parseValidMenuToMap() {
+        // Given
+        String validMenu = "양송이수프-2,해산물파스타-3";
+
+        // When
+        Map<String, Integer> result = Parser.parseStringToMap(validMenu);
+
+        // Then
+        assertThat(result).containsExactlyInAnyOrderEntriesOf(Map.of("양송이수프", 2, "해산물파스타", 3));
     }
 
     @ParameterizedTest
     @ValueSource(strings = {
-            "Turkey10,Ham-20,Pie-15",
-            "Cake-25,Cookies-5Eggnog-12",
-            "Cake-25,Cookies 5,Eggnog-12",
-            "Turkey-10,Ham-20/Pie-15",
-            "Cake-25,Cookies-5,Eggnog-12,",
-            "abc- def",
-            "ghi - jkl",
-            "mno -pqr",})
-    void parseStringToMap_InvalidMenuFormat_IllegalArgumentException(String input) {
-        assertThatThrownBy(() -> Parser.parseStringToMap(input))
-                .isInstanceOf(ChristmasException.class)
-                .hasCauseInstanceOf(IllegalArgumentException.class);
-    }
-
-    @ParameterizedTest
-    @ValueSource(strings = {
-            "Turkey-10,Ham-20,Turkey-15",
-            "Cake-25,Cookies-5,Eggnog-12,Eggnog-8",})
-    void parseStringToMap_InvalidMenuFormat_IllegalStateException(String input) {
-        assertThatThrownBy(() -> Parser.parseStringToMap(input))
-                .isInstanceOf(IllegalStateException.class);
+            "티본스테이크-10,레드와인-5,티본스테이크-1",
+            " ",
+            "",
+            "바비큐립-1,해산물파스타-2,",
+            "바비큐립 4,양송이수프-2",
+            "티본스테이크-10, 레드와인-5",
+            "레드와인5,티본스테이크-1"
+    })
+    @DisplayName("parseStringToMap - Invalid input")
+    void parseStringToMap_InvalidInput(String input) {
+        assertThatExceptionOfType(ChristmasException.class)
+                .isThrownBy(() -> Parser.parseStringToMap(input))
+                .withCauseExactlyInstanceOf(IllegalArgumentException.class);
     }
 
 }

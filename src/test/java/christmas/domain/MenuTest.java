@@ -2,6 +2,8 @@ package christmas.domain;
 
 import christmas.domain.constant.MenuItem;
 import christmas.exception.ChristmasException;
+import christmas.exception.ExceptionMessage;
+import christmas.util.Parser;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
