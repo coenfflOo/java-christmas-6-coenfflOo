@@ -64,7 +64,8 @@ public class PromotionEventServiceTest {
         // Then
         assertThat(appliedDiscount).isEqualTo(MenuItem.CHAMPAGNE.getPrice());
         assertThat(discount.getDiscounts()).containsKey(DiscountItem.PROMOTION_DISCOUNT);
-        assertThat(discount.getDiscounts().get(DiscountItem.PROMOTION_DISCOUNT)).isEqualTo(MenuItem.CHAMPAGNE.getPrice());
+        assertThat(discount.getDiscounts().get(DiscountItem.PROMOTION_DISCOUNT)).isEqualTo(
+                MenuItem.CHAMPAGNE.getPrice());
     }
 
     @Test

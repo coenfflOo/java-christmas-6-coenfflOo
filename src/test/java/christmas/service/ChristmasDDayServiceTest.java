@@ -1,6 +1,5 @@
 package christmas.service;
 
-
 import christmas.domain.Date;
 import christmas.domain.Discount;
 import org.junit.jupiter.api.DisplayName;

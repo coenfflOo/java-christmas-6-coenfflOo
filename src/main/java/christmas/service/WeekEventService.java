@@ -49,5 +49,4 @@ public class WeekEventService {
         MenuItem menuItem = Menu.initMenuMap().get(menuKey);
         return menuItem.getWeekend() == eventNumber;
     }
-
 }

@@ -24,6 +24,7 @@ public class InputViewTest {
     void setUp() {
         System.setIn(System.in);
     }
+
     @AfterEach
     void setOut() {
         System.setIn(System.in);
@@ -47,7 +48,7 @@ public class InputViewTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"1 1", "12/21", "32", "invalidInput", ""," "})
+    @ValueSource(strings = {"1 1", "12/21", "32", "invalidInput", "", " "})
     @DisplayName("잘못된 날짜 입력 시 재입력 테스트")
     void readInvalidDateInfo(String invalidInput) {
         // Given

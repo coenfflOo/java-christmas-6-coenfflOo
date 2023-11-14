@@ -67,5 +67,4 @@ public class ParserTest {
                 .isThrownBy(() -> Parser.parseStringToMap(input))
                 .withCauseExactlyInstanceOf(IllegalArgumentException.class);
     }
-
 }

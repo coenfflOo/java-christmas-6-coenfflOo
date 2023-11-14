@@ -18,38 +18,40 @@ public class BenefitService {
     }
 
 
-    public int totalBenefits(){
-        if (menu.getOriginalPrice() < MIN_ORDER_PRICE)
+    public int totalBenefits() {
+        if (menu.getOriginalPrice() < MIN_ORDER_PRICE) {
             return 0;
+        }
         return christmasDday() + weeklyDiscount() + promotionDiscount();
     }
 
-    public int afterBenefits(){
+    public int afterBenefits() {
         return menu.getOriginalPrice() - onlyDiscountBenefits();
     }
 
-    public String benefitBadge(){
+    public String benefitBadge() {
         return BadgeItem.getIconForValue(totalBenefits());
     }
 
-    private int onlyDiscountBenefits(){
-        if (menu.getOriginalPrice() < MIN_ORDER_PRICE)
+    private int onlyDiscountBenefits() {
+        if (menu.getOriginalPrice() < MIN_ORDER_PRICE) {
             return 0;
+        }
         return christmasDday() + weeklyDiscount();
     }
 
-    private int christmasDday(){
+    private int christmasDday() {
         ChristmasDDayService christmasDdayService = new ChristmasDDayService();
-        return christmasDdayService.checkChristmasDiscount(date,discount);
+        return christmasDdayService.checkChristmasDiscount(date, discount);
     }
 
-    private int weeklyDiscount(){
-        WeekEventService weekEventService = new WeekEventService(date,menu);
+    private int weeklyDiscount() {
+        WeekEventService weekEventService = new WeekEventService(date, menu);
         return weekEventService.checkWeekDiscount(discount) +
-        weekEventService.checkSpecialDiscount(discount);
+                weekEventService.checkSpecialDiscount(discount);
     }
 
-    private int promotionDiscount(){
+    private int promotionDiscount() {
         PromotionEventService promotionEventService = new PromotionEventService(menu);
         return promotionEventService.checkPromotionDiscount(discount);
     }

@@ -14,5 +14,4 @@ public class ChristmasException extends IllegalArgumentException {
     public static ChristmasException invalidMenu(Exception exception) {
         return new ChristmasException(IS_INVALID_MENU, exception);
     }
-
 }
