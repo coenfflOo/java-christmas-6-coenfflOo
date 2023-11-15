@@ -9,7 +9,7 @@ import christmas.domain.constant.DiscountItem;
 public class ChristmasDDayService {
     private static final int DAILY_DISCOUNT = 100;
     private static final int FIRST_DAY_DISCOUNT = 1000;
-    int christmasDiscount;
+    private int christmasDiscount;
 
     public int checkChristmasDiscount(Date date, Discount discount) {
         calculateTotalDiscount(date);

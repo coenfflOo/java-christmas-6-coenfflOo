@@ -25,13 +25,13 @@ public class BenefitsController {
         applyBenefits();
     }
 
-    public void checkBenefits() {
+    private void checkBenefits() {
         int totalMoney = benefitService.totalBenefits();
         OutputView.printDiscounts(discount);
         OutputView.printTotalBenefits(totalMoney);
     }
 
-    public void applyBenefits() {
+    private void applyBenefits() {
         int payMoney = benefitService.afterBenefits();
         OutputView.printAfterBenefits(payMoney);
         OutputView.printBenefitBadge(benefitService.benefitBadge());

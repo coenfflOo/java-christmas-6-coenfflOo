@@ -42,6 +42,7 @@ public class DiscountTest {
     @ValueSource(ints = {0, -10})
     @DisplayName("유효하지 않은 할인 정보 추가 시 무시")
     void addInvalidDiscount_ThrowsException(int invalidDiscountAmount) {
+
         discount.addEventApplied(DiscountItem.WEEKLY_DISCOUNT, invalidDiscountAmount);
 
         assertThat(discount.getDiscounts()).isEmpty();

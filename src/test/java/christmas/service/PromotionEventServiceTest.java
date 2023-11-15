@@ -5,6 +5,7 @@ import christmas.domain.Menu;
 import christmas.domain.constant.DiscountItem;
 import christmas.domain.constant.MenuItem;
 import christmas.view.constant.OutputMessage;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -15,11 +16,17 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class PromotionEventServiceTest {
 
+    Map<String, Integer> orderMenu;
+
+    @BeforeEach
+    void init() {
+        orderMenu = new HashMap<>();
+    }
+
     @Test
     @DisplayName("샴페인 프로모션 적용 테스트 - 적용 대상")
     void applyChampagnePromotionEligible() {
         // Given
-        Map<String, Integer> orderMenu = new HashMap<>();
         orderMenu.put("초코케이크", 4);
         orderMenu.put("크리스마스파스타", 3);
         Menu menu = Menu.from(orderMenu);
@@ -35,8 +42,7 @@ public class PromotionEventServiceTest {
     @DisplayName("샴페인 프로모션 적용 테스트 - 적용 대상이 아님")
     void applyChampagnePromotionNotEligible() {
         // Given
-        Map<String, Integer> orderMenu = new HashMap<>();
-        orderMenu.put("티본스테이크", 1);  // Total price less than PROMOTION_STANDARD
+        orderMenu.put("티본스테이크", 1);
         Menu menu = Menu.from(orderMenu);
 
         // When
@@ -50,7 +56,6 @@ public class PromotionEventServiceTest {
     @DisplayName("프로모션 할인 테스트 - 적용 대상")
     void applyPromotionDiscount() {
         // Given
-        Map<String, Integer> orderMenu = new HashMap<>();
         orderMenu.put("초코케이크", 4);
         orderMenu.put("크리스마스파스타", 3);
         Menu menu = Menu.from(orderMenu);
@@ -72,8 +77,7 @@ public class PromotionEventServiceTest {
     @DisplayName("프로모션 할인 테스트 - 적용 대상이 아님")
     void applyPromotionDiscountNotEligible() {
         // Given
-        Map<String, Integer> orderMenu = new HashMap<>();
-        orderMenu.put("티본스테이크", 1);  // Total price less than PROMOTION_STANDARD
+        orderMenu.put("티본스테이크", 1);
         Menu menu = Menu.from(orderMenu);
 
         PromotionEventService promotionEventService = new PromotionEventService(menu);
@@ -86,6 +90,4 @@ public class PromotionEventServiceTest {
         assertThat(appliedDiscount).isEqualTo(0);
         assertThat(discount.getDiscounts()).doesNotContainKey(DiscountItem.PROMOTION_DISCOUNT);
     }
-
-    // Add more tests as needed
 }

@@ -2,6 +2,7 @@ package christmas.domain;
 
 import christmas.domain.constant.MenuItem;
 import christmas.exception.ChristmasException;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -18,13 +19,18 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class MenuTest {
 
+    Map<String, Integer> orderMenu;
+
+    @BeforeEach
+    void init() {
+        orderMenu = new HashMap<>();
+    }
+
     @ParameterizedTest
     @CsvSource({"양송이수프, 2, 12000", "티본스테이크, 3, 165000", "초코케이크, 1, 15000"})
     @DisplayName("정상적인 주문 가격 계산")
     void calculateOriginalPrice_ValidOrder_CorrectTotalPrice(
             String itemName, int quantity, int expectedTotalPrice) {
-
-        Map<String, Integer> orderMenu = new HashMap<>();
         orderMenu.put(itemName, quantity);
 
         Menu menu = Menu.from(orderMenu);
@@ -36,7 +42,6 @@ class MenuTest {
     @ValueSource(strings = {"Pasta", "Coke"})
     @DisplayName("유효하지 않은 메뉴 주문 시 예외 발생")
     void createMenu_InvalidMenu_ThrowsException(String invalidMenuName) {
-        Map<String, Integer> orderMenu = new HashMap<>();
         orderMenu.put(invalidMenuName, 1);
 
         assertThatThrownBy(() -> Menu.from(orderMenu))
@@ -47,7 +52,6 @@ class MenuTest {
     @CsvSource({"시저샐러드, 0", "바비큐립, -1", "아이스크림, -5"})
     @DisplayName("유효하지 않은 수량 주문 시 예외 발생")
     void createMenu_InvalidQuantity_ThrowsException(String itemName, int invalidQuantity) {
-        Map<String, Integer> orderMenu = new HashMap<>();
         orderMenu.put(itemName, invalidQuantity);
 
         assertThatThrownBy(() -> Menu.from(orderMenu))
@@ -58,7 +62,6 @@ class MenuTest {
     @CsvSource({"제로콜라, 2, 레드와인, 1", "레드와인, 3, 샴페인, 1"})
     @DisplayName("음료 카테고리만 주문 시 예외 발생")
     void createMenu_NonDrinkOrder_ThrowsException(String item1, int qty1, String item2, int qty2) {
-        Map<String, Integer> orderMenu = new HashMap<>();
         orderMenu.put(item1, qty1);
         orderMenu.put(item2, qty2);
 
@@ -74,7 +77,6 @@ class MenuTest {
             String item1, int qty1, String item2, int qty2,
             String item3, int qty3, String item4, int qty4) {
 
-        Map<String, Integer> orderMenu = new HashMap<>();
         orderMenu.put(item1, qty1);
         orderMenu.put(item2, qty2);
         orderMenu.put(item3, qty3);

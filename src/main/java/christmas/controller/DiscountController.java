@@ -35,7 +35,6 @@ public class DiscountController {
         PromotionEventService promotionEventService = new PromotionEventService(menu);
         OutputView.printPromotion(promotionEventService.isChampagnePromotionApplied());
     }
-
 }
 
 

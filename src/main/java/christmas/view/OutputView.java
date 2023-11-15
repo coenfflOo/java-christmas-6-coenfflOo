@@ -8,7 +8,7 @@ import christmas.view.constant.*;
 import java.util.Map;
 
 public class OutputView {
-    public static final int changeToNegative = -1;
+    private static final int changeToNegative = -1;
 
     public static void printReservationCheck(Date date, Menu menu) {
         printDate(date.getDate());
@@ -73,7 +73,7 @@ public class OutputView {
         System.out.println(data);
     }
 
-    public static void printNewLine() {
+    private static void printNewLine() {
         System.out.println();
     }
 
@@ -81,11 +81,11 @@ public class OutputView {
         System.out.printf(PrintFormat.MENU_FORMAT.getFormat(), dish, quantity);
     }
 
-    public static void printSeparator(final int price) {
+    private static void printSeparator(final int price) {
         System.out.printf(PrintFormat.SEPARATOR_FORMAT.formatPrice(price));
     }
 
-    public static void printBenefit(final String benefit, final int price) {
+    private static void printBenefit(final String benefit, final int price) {
         System.out.printf(PrintFormat.formatBenefit(benefit, price));
     }
 }

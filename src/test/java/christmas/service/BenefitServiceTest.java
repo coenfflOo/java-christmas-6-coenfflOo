@@ -26,7 +26,6 @@ public class BenefitServiceTest {
     @BeforeEach
     void init() {
         christmasDDayService = new ChristmasDDayService();
-
         orderMenu = new HashMap<>();
         discount = new Discount();
     }
@@ -35,7 +34,7 @@ public class BenefitServiceTest {
     @DisplayName("총 혜택 계산 테스트 - 최소 주문 가격 미달")
     void totalBenefitsBelowMinOrderPrice() {
         // Given
-        date = Date.from(26);  // Example: November 1, 2023
+        date = Date.from(26);
         orderMenu.put("시저샐러드", 1);
         menu = Menu.from(orderMenu);
         BenefitService benefitService = new BenefitService(date, menu, discount);

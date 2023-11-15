@@ -25,7 +25,7 @@ public enum PrintFormat {
         return format + System.lineSeparator();
     }
 
-    public DecimalFormat getPriceFormat() {
+    private DecimalFormat getPriceFormat() {
         return priceFormat;
     }
 
